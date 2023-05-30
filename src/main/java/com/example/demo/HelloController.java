@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.crawler.model.AstronomyDay;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
@@ -31,6 +32,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 
 
 public class HelloController implements Initializable {
@@ -103,17 +105,18 @@ public class HelloController implements Initializable {
 
 
 //            listview
-//            monthList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-//                @Override
-//                public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-//
-//                    final Alert alert = new Alert(AlertType.INFORMATION); // 實體化Alert對話框物件，並直接在建構子設定對話框的訊息類型
-//                    alert.setTitle(monthList.getSelectionModel().getSelectedItem()); //設定對話框視窗的標題列文字
-//                    alert.setHeaderText("現在該做什麼？"); //設定對話框視窗裡的標頭文字。若設為空字串，則表示無標頭
-//                    alert.setContentText("請按下「確定」按鈕。"); //設定對話框的訊息文字
-//                    alert.showAndWait(); //顯示對話框，並等待對話框被關閉時才繼續執行之後的程式
-//                }
-//            });
+            monthList.setOnMouseClicked (new EventHandler<MouseEvent> () {
+                @Override
+                public void handle(MouseEvent event) {
+                    final Alert alert = new Alert(AlertType.INFORMATION); // 實體化Alert對話框物件，並直接在建構子設定對話框的訊息類型
+                    alert.setTitle("天文現象"); //設定對話框視窗的標題列文字
+                    alert.setHeaderText(monthList.getSelectionModel().getSelectedItem()); //設定對話框視窗裡的標頭文字。若設為空字串，則表示無標頭
+                    alert.setContentText(reader.getContent(pickDay.getValue().getMonthValue() ,monthList.getSelectionModel().getSelectedIndex())); //設定對話框的訊息文字
+                    alert.showAndWait(); //顯示對話框，並等待對話框被關閉時才繼續執行之後的程式
+//                    getContent
+                }
+            });
+
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -80,30 +80,28 @@ public class Reader {
     }
 
     public List<String> getMonth(int i){
-//        for (int j=0; j<12; j++){
-//            System.out.println(astMonth.get(j));
-//        }
 
         return astMonth.get(i-1).getTitle();
     }
-    public String getMonthTitle(int i){
-
-        return astMonth.get(i-1).getMonthTitle();
+    public String getContent(int i, int j){
+        return astMonth.get(i-1).getContent().get(j);
     }
     public void astronomyMonth() {
         // 到每月星象頁
         List<String> stringList;
+        List<String> contentList;
 
         driver.get("https://starwalk.space/zh-Hant/news/astronomy-calendar-2023");
 
         String cssSel = "";
         AstronomyMonth crawlerMonAst ;
+
+        int contentIdx = 4;
         for (int i=3, j = 1; i<15; i++, j++){
 //            獲得每個月分的大標題
-//            crawlerMonAst = new AstronomyMonth();
             crawlerMonAst = new AstronomyMonth();
             stringList = new ArrayList<>();
-
+            contentList = new ArrayList<>();
 
             cssSel = "#root > div.vfrcau0.rp1gn40 > main > article > div.x6h6yq4 > div.fkpcmm0.x6h6yq9 > ul > li:nth-child(" + i +") > a";
             WebElement elm = driver.findElement(By.cssSelector(cssSel));
@@ -111,8 +109,6 @@ public class Reader {
             crawlerMonAst.setMonth(j);
             crawlerMonAst.setMonthTitle(elm.getText());
 
-//            System.out.println(j);
-//            System.out.println(elm.getText());
 
             //爬每個月的詳細天文資料
             cssSel = "#root > div.vfrcau0.rp1gn40 > main > article > div.x6h6yq4 > div.fkpcmm0.x6h6yq9 > ul > li:nth-child("+i+") > ul > li";
@@ -123,6 +119,17 @@ public class Reader {
                 stringList.add(elmFor.getText());
             }
             crawlerMonAst.setTitle(stringList);
+
+
+            //爬天文資料內容
+            for (int k=0; k<stringList.size(); k++){
+                cssSel = "//*[@id=\"root\"]/div[1]/main/article/div[5]/div[2]/p["+contentIdx+"]";
+                WebElement elmContent = driver.findElement(By.xpath(cssSel));
+                contentList.add(elmContent.getText());
+                if (contentIdx ==8 ) contentIdx = 10;
+                else contentIdx++;
+            }
+            crawlerMonAst.setContent(contentList);
 
             //爬取內容
             astMonth.add(crawlerMonAst);

@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+<SplitPane dividerPositions="0.5" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
    <items>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="240.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="240.0" style="-fx-background-color: white;">
          <children>
             <ImageView fx:id="moonImg" fitHeight="240.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -46,7 +46,7 @@
                </font></Label>
          </children>
       </AnchorPane>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="240.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="240.0" style="-fx-background-color: D2E9E9;">
          <children>
             <TitledPane fx:id="monTitlePane" collapsible="false" layoutX="10.0" layoutY="54.0" prefHeight="335.0" prefWidth="221.0" text="12月天文現象：">
                <content>
@@ -56,7 +56,7 @@
                   <Font name="Microsoft JhengHei UI" size="13.0" />
                </font>
             </TitledPane>
-            <DatePicker fx:id="pickDay" layoutX="124.0" layoutY="17.0" onAction="#crawlerDay" prefHeight="23.0" prefWidth="104.0" />
+            <DatePicker fx:id="pickDay" layoutX="110.0" layoutY="17.0" onAction="#crawlerDay" prefHeight="26.0" prefWidth="118.0" />
          </children>
       </AnchorPane>
    </items>
