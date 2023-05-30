@@ -1,6 +1,4 @@
 package com.example.demo.crawler.model;
-
-import java.io.IOException;
 import java.util.List;
 public class AstronomyMonth {
     private int month;

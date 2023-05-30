@@ -1,16 +1,9 @@
 package com.example.demo.crawler;
 import com.example.demo.crawler.model.*;
 
-import org.jsoup.select.Elements;
-
-import okhttp3.*;
-import org.jsoup.*;
-import org.jsoup.nodes.*;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -20,37 +13,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.openqa.selenium.*;
 
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.io.*;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
@@ -71,12 +48,15 @@ public class Reader {
 
 
     public Reader() throws IOException {
+
         /* 初始化 */
         astMonth = new ArrayList<>();
         astDay = new AstronomyDay();
         System.setProperty("webdriver.chrome.driver", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
 
-        driver = new ChromeDriver(); // googleChrome
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("-headless");
+        driver = new ChromeDriver(chromeOptions); // googleChrome
     }
 
     public List<String> getMonth(int i){
@@ -194,6 +174,10 @@ public class Reader {
 
     public AstronomyDay getAstDay() {
         return astDay;
+    }
+
+    public AstronomyMonth getAstMon(int i){
+        return astMonth.get(i-1);
     }
 
     public static String downloadImageFromUrl(String url, String fileDirectoryPath, String fileNameWithoutFormat) {
