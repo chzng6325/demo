@@ -89,6 +89,7 @@
             <artifactId>selenium-api</artifactId>
             <version>3.141.59</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -125,3 +126,4 @@
         </plugins>
     </build>
 </project>
+
