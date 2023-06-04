@@ -153,12 +153,12 @@ public class Reader {
         String urlStr = img.getAttribute("src");
         System.out.println(urlStr);
         try {
-            downloadImageFromUrl(urlStr, "C:\\Users\\yang\\Desktop\\demo\\src\\main\\resources\\com\\example\\demo", "moon");
+            downloadImageFromUrl(urlStr, "src/main/resources/com/example/demo/", "moon");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+//    C:\Users\yang\Desktop\demo\src\main\resources\com\example\demo
     private void parseDay(List<String> stringList) {
         int j;
         for (int i = 0; i < stringList.size(); i++) {
