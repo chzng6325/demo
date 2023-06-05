@@ -151,14 +151,15 @@ public class Reader {
         WebElement img = driver.findElement(By.cssSelector("#day-1 > div.row.margin-bottom-20 > div.col-md-3.col-sm-6.margin-bottom-20 > img"));
 
         String urlStr = img.getAttribute("src");
-        System.out.println(urlStr);
-        try {
-            downloadImageFromUrl(urlStr, "src/main/resources/com/example/demo/", "moon");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        astDay.setImgUrl(urlStr);
+//        System.out.println(urlStr);
+//        try {
+//            downloadImageFromUrl(urlStr, "src/main/resources/com/example/demo/", "moon");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
-//    C:\Users\yang\Desktop\demo\src\main\resources\com\example\demo
+
     private void parseDay(List<String> stringList) {
         int j;
         for (int i = 0; i < stringList.size(); i++) {

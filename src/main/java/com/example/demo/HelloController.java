@@ -16,6 +16,7 @@ import com.example.demo.crawler.Reader;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.List;
@@ -30,6 +31,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 
+import java.net.URLConnection;
 
 public class HelloController implements Initializable {
     private Reader reader;
@@ -151,7 +153,21 @@ public class HelloController implements Initializable {
 
             File file = new File("src/main/resources/com/example/demo/moon.jpg");
             String str = file.toURI().toString();
-            img = new Image(str);
+//            img = new Image(str);
+
+            try {
+                String imgUrl = reader.getAstDay().getImgUrl();
+                URLConnection connection = new URL(imgUrl).openConnection();
+                connection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
+                img = new Image(connection.getInputStream());
+            } catch ( MalformedURLException e){
+                e.printStackTrace();
+            }catch ( IOException e){
+                e.printStackTrace();
+
+            }
+
+
             moonImg.setImage(img);
 
         } catch ( ParseException e){

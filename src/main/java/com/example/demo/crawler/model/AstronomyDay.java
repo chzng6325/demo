@@ -11,8 +11,15 @@ public class AstronomyDay {
     private String solarTerm;
     private String phenomenon;
 
+    private String imgUrl;
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
 
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
     public String getWhichDay() {
         return whichDay;
